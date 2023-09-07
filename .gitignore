@@ -1,0 +1,8 @@
+.idea/
+.git/
+venv/
+__pycache__/
+*.pyc
+app/src/models/checkpoints/s2v_old
+app/src/models/checkpoints/multitask-qg-ag.ckpt
+app/src/models/checkpoints/race-distractors.ckpt

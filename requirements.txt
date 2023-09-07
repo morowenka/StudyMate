@@ -1,0 +1,11 @@
+transformers==4.33.1
+nltk==3.8.1
+torch==2.0.1
+sense2vec==2.0.2
+numpy==1.23.5
+googletrans==4.0.0-rc1
+punctuators==0.0.5
+pytorch_lightning==2.0.8
+pydub==0.25.1
+SpeechRecognition==3.10.0
+moviepy==1.0.3

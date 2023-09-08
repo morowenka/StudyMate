@@ -14,8 +14,9 @@ def extract_text(file_path):
         file_name = name[0:].lower()
         file_extension = extension[1:].lower()
         if file_extension in ["txt", "csv"]:
-            with open(path, "r") as file:
-                return file.read()
+            if file_extension in ["txt", "csv"]:
+                with open(path, "r", encoding="utf-8") as file:
+                    return file.read()
         elif file_extension in ["mp4", "mkv"]:
             audio_name = file_name + ".wav"
             _extract_audio_from_video(path, audio_name)

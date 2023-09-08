@@ -59,7 +59,7 @@ class QuestionGenerator:
             max_length=QnAG_TARGET_MAX_TOKEN_LEN,
             repetition_penalty=2.5,
             length_penalty=1.0,
-            early_stopping=True
+            early_stopping=True,
         )
 
         return ''.join([

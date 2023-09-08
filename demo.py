@@ -4,8 +4,10 @@ import shutil
 
 import streamlit as st
 
-checkpoints_path = 'app/src/models/checkpoints'
-tmp_demo_folder = 'app/assets/tmp_demo'
+current_directory = os.path.dirname(os.path.abspath(__file__))
+checkpoints_path = os.path.join(current_directory, 'app/src/models/checkpoints')
+tmp_demo_folder = os.path.join(current_directory, 'app/assets/tmp_demo')
+
 info_txt = os.path.join(tmp_demo_folder, 'info.txt')
 results_json = os.path.join(tmp_demo_folder, 'results.json')
 

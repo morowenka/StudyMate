@@ -21,9 +21,11 @@ class QuizGenerator:
         self.checkpoints_path = checkpoints_path
         if not [f for f in os.listdir(self.checkpoints_path) if f != ".gitkeep"]:
             print('downloading models from google drive...')
-            print(checkpoints_path)
+            print(self.checkpoints_path)
             print(os.listdir(self.checkpoints_path))
             self.download_from_google_drive()
+
+        print(os.listdir(self.checkpoints_path))
 
         self.qg_checkpoint_path = os.path.join(self.checkpoints_path, 'multitask-qg-ag.ckpt')
         self.dist_checkpoint_path = os.path.join(self.checkpoints_path, 'race-distractors.ckpt')

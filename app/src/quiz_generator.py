@@ -25,6 +25,8 @@ class QuizGenerator:
             print(os.listdir(self.checkpoints_path))
             self.download_from_google_drive()
 
+        print('text text text...')
+        print(self.checkpoints_path)
         print(os.listdir(self.checkpoints_path))
 
         self.qg_checkpoint_path = os.path.join(self.checkpoints_path, 'multitask-qg-ag.ckpt')

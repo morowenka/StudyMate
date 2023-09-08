@@ -12,6 +12,7 @@ from app.src.models.question_and_answer_generator import QuestionGenerator
 from app.src.processing.distractor_processing import DistractorProcessor
 from app.src.processing.text_extractor import extract_text
 from app.src.processing.text_processing import TextCleaner, remove_trailing_symbols, split_text_into_chunks
+from app.src.models.translator import TranslatorModel
 
 warnings.filterwarnings('ignore')
 
@@ -35,16 +36,17 @@ class QuizGenerator:
         self.grammar_model = PunctCapSegModelONNX.from_pretrained(
             '1-800-BAD-CODE/xlm-roberta_punctuation_fullstop_truecase')
 
-        self.translator = Translator()
+        self.google_translator = Translator()
+        self.translator = TranslatorModel()
         self.processor = DistractorProcessor()
 
         self.COUNT_OF_DISTRACTORS = 3
 
     def process_chunk(self, chunk):
         original_chunk = chunk
-        lang_detected_original = self.translator.detect(chunk)
+        lang_detected_original = self.google_translator.detect(chunk)
         if LANGUAGES[lang_detected_original.lang] == 'russian':
-            chunk = self.translator.translate(chunk, src='ru', dest='en').text
+            chunk = self.translator.translate(chunk, src='ru', dest='en')
 
         cleaner = TextCleaner(chunk)
         cleaned_text = cleaner.clean()
@@ -75,10 +77,10 @@ class QuizGenerator:
         answer = self.grammar_model.infer(texts=[answer], apply_sbd=True)[0][0]
 
         if LANGUAGES[lang_detected_original.lang] == 'russian':
-            question = self.translator.translate(question, src='en', dest='ru').text
+            question = self.translator.translate(question, src='en', dest='ru')
 
-            distractors = [self.translator.translate(dist, src='en', dest='ru').text for dist in distractors]
-            answer = self.translator.translate(answer, src='en', dest='ru').text
+            distractors = [self.translator.translate(dist, src='en', dest='ru') for dist in distractors]
+            answer = self.translator.translate(answer, src='en', dest='ru')
 
         distractors = [remove_trailing_symbols(dist) for dist in distractors]
         answer = remove_trailing_symbols(answer)

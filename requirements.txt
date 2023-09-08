@@ -10,3 +10,4 @@ pydub==0.25.1
 SpeechRecognition==3.10.0
 moviepy==1.0.3
 streamlit==1.26.0
+gdown==4.7.1

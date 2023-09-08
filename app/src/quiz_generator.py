@@ -1,6 +1,8 @@
 import os
 import warnings
+import zipfile
 
+import gdown
 import numpy as np
 from googletrans import Translator, LANGUAGES
 from punctuators.models import PunctCapSegModelONNX
@@ -17,6 +19,8 @@ warnings.filterwarnings('ignore')
 class QuizGenerator:
     def __init__(self, checkpoints_path):
         self.checkpoints_path = checkpoints_path
+        if not os.listdir(self.checkpoints_path):
+            self.download_from_google_drive()
 
         self.qg_checkpoint_path = os.path.join(self.checkpoints_path, 'multitask-qg-ag.ckpt')
         self.dist_checkpoint_path = os.path.join(self.checkpoints_path, 'race-distractors.ckpt')
@@ -88,6 +92,14 @@ class QuizGenerator:
             "question": question,
             "choices": shuffled_choices
         }
+
+    def download_from_google_drive(self):
+        url = "https://drive.google.com/uc?id=YOUR_ZIP_FILE_ID"
+        output_path = os.path.join(self.checkpoints_path, 'checkpoints.zip')
+        gdown.download(url, output_path, quiet=False)
+        with zipfile.ZipFile(output_path, 'r') as zip_ref:
+            zip_ref.extractall(self.checkpoints_path)
+        os.remove(output_path)
 
     def generate(self, source_path, count_of_distractors=3):
         self.COUNT_OF_DISTRACTORS = count_of_distractors

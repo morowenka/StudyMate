@@ -46,14 +46,14 @@ language = st.sidebar.radio("Language:", ['Русский', 'English'], label_vi
 
 if page_num == 0:
 
-    st.write("Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь..."
-             "Описание нашего продукта здесь...Описание нашего продукта здесь...")
+    st.write("StudyMate — инструмент, позволяющий по предоставленному образовательному материалу создать тест "
+             "для проверки усвоенных знаний. StudyMate может работать с различными форматами входных данных: "
+             "вы можете подать видео с лекцией или мастер-классом, запись образовательного подкаста или текст "
+             "статьи или урока. Закрепляйте свои знания вместе с нашим инструментом!" if language == 'Русский' \
+                 else "StudyMate is a tool that allows you to create a test based on the provided educational material "
+                      "to check your knowledge. StudyMate can work with different input formats: you can submit a video"
+                      " of a lecture or master class, a recording of an educational podcast, or the text of an article "
+                      "or lesson. Reinforce your knowledge with our tool!")
     st.subheader('Try StudyMate:' if language == 'English' else 'Попробовать StudyMate:')
 
     uploaded_file = st.file_uploader("Upload a file" if language == 'English' else 'Загрузите файл',

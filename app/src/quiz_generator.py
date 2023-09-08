@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 class QuizGenerator:
     def __init__(self, checkpoints_path):
         self.checkpoints_path = checkpoints_path
-        if not os.listdir(self.checkpoints_path):
+        if not [f for f in os.listdir(self.checkpoints_path) if f != ".gitkeep"]:
             print('downloading models from google drive...')
             print(checkpoints_path)
             print(os.listdir(self.checkpoints_path))

@@ -14,6 +14,12 @@ results_json = os.path.join(tmp_demo_folder, 'results.json')
 language = 'Русский'
 st.set_page_config(layout="centered")
 
+
+@st.cache_resource()
+def get_quiz_generator():
+    return QuizGenerator(checkpoints_path)
+
+
 if not os.path.exists(info_txt):
     os.makedirs(tmp_demo_folder, exist_ok=True)
     page_num = 0
@@ -88,7 +94,7 @@ elif page_num == 1:
         st.write(download_status[1])
         from app.src.quiz_generator import QuizGenerator
 
-        quiz_generator = QuizGenerator(checkpoints_path)
+        quiz_generator = get_quiz_generator()
         st.write(download_status[2])
         results = quiz_generator.generate(source_path)
 

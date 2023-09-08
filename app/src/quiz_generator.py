@@ -21,12 +21,8 @@ class QuizGenerator:
         self.checkpoints_path = checkpoints_path
         if not [f for f in os.listdir(self.checkpoints_path) if f != ".gitkeep"]:
             print('downloading models from google drive...')
-            print(self.checkpoints_path)
-            print(os.listdir(self.checkpoints_path))
             self.download_from_google_drive()
 
-        print('text text text...')
-        print(self.checkpoints_path)
         print(os.listdir(self.checkpoints_path))
 
         self.qg_checkpoint_path = os.path.join(self.checkpoints_path, 'multitask-qg-ag.ckpt')
@@ -101,7 +97,7 @@ class QuizGenerator:
         }
 
     def download_from_google_drive(self):
-        url = "https://drive.google.com/uc?id=1MAHOzIq4Jf3YdevPsxSKE-q9FjunHT35"
+        url = "https://drive.google.com/uc?id=1Q5AvkSJDVABcK-9MydvU7HUzlUhYDYEz"
         output_path = os.path.join(self.checkpoints_path, 'checkpoints.zip')
         gdown.download(url, output_path, quiet=False)
         with zipfile.ZipFile(output_path, 'r') as zip_ref:

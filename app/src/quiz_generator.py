@@ -97,7 +97,7 @@ class QuizGenerator:
         }
 
     def download_from_google_drive(self):
-        url = "https://drive.google.com/uc?id=YOUR_ZIP_FILE_ID"
+        url = "https://drive.google.com/uc?id=1MAHOzIq4Jf3YdevPsxSKE-q9FjunHT35"
         output_path = os.path.join(self.checkpoints_path, 'checkpoints.zip')
         gdown.download(url, output_path, quiet=False)
         with zipfile.ZipFile(output_path, 'r') as zip_ref:

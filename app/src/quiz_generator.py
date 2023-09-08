@@ -20,6 +20,9 @@ class QuizGenerator:
     def __init__(self, checkpoints_path):
         self.checkpoints_path = checkpoints_path
         if not os.listdir(self.checkpoints_path):
+            print('downloading models from google drive...')
+            print(checkpoints_path)
+            print(os.listdir(self.checkpoints_path))
             self.download_from_google_drive()
 
         self.qg_checkpoint_path = os.path.join(self.checkpoints_path, 'multitask-qg-ag.ckpt')
